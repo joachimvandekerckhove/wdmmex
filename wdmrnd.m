@@ -1,7 +1,7 @@
 % WDMRND  Random samples from a Wiener diffusion model (MEX)
 %
-%  y = WDMRND(a, t, b, d, [N]); with a, t, b, d all scalars of Nx1 vectors
-%  length. N is an optional size vector, which is valid only if all other
+%  y = WDMRND(a, t, b, d, [N]); with a, t, b, d all scalars or Nx1 vectors.
+%  N is an optional size vector, which is valid only if all other
 %  parameters are scalars.
 %
 %  Parameter a is the boundary separation, t the nondecision time (in 

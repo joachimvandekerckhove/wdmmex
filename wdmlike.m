@@ -1,6 +1,7 @@
 % WDMLIKE  Negative log-likelihood Wiener diffusion model (MEX)
 %
-%  L = WDMLIKE(y, param) with y Nx1 and param Nx4 or 1x4.
+%  L = WDMLIKE(y, param) with y an Nx1 vector and param an Nx4 matrix or a
+%  1x4 vector.
 %
 %  Parameter a is the boundary separation, t the nondecision time (in 
 %  seconds), b the relative bias (as a proportion) and d the drift rate.

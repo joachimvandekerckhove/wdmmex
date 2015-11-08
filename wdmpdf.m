@@ -1,6 +1,7 @@
 % WDMPDF  Wiener diffusion model probability density function (MEX)
 %
-%  p = WDMPDF(y, a, t, b, d) with y Nx1, rest scalars or Nx1.
+%  p = WDMPDF(y, a, t, b, d) with y an Nx1 vector, the rest scalars or 
+%  Nx1 vectors.
 %
 %  Parameter a is the boundary separation, t the nondecision time (in 
 %  seconds), b the relative bias (as a proportion) and d the drift rate.
