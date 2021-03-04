@@ -1,13 +1,15 @@
 classdef Wiener
 % WIENER  A class for the Wiener distribution
 
-    % The main properties are the mean and standard deviation
+    % The main properties are the parameters of the distribution
     properties
+    
         DriftRate          double {mustBeReal, mustBeFinite} = 0.0
         BoundarySeparation double {mustBeReal, mustBeFinite, mustBePositive} = 1.0
         NondecisionTime    double {mustBeReal, mustBeFinite, mustBePositive} = 0.2
         InitialBias        double {mustBeReal, mustBeFinite, mustBePositive} = 0.5
         DriftCoefficient   double {mustBeReal, mustBeFinite, mustBePositive} = 1.0
+    
     end
     
     % Derived properties that need to be set internally
@@ -67,55 +69,50 @@ classdef Wiener
 
         
         function density = pdf(obj, xValues)
-            
-            s = obj.DriftCoefficient;
-            v = obj.DriftRate * s;
-            a = obj.BoundarySeparation * s;
-            h = obj.NondecisionTime;
-            b = obj.InitialBias;
-            
-            density = wdmDensityMexFile(xValues, v, a, h, b);
+                        
+            density = wdmDensityMexFile(                        ...
+                xValues                                       , ...
+                obj.DriftRate * obj.DriftCoefficient          , ...
+                obj.BoundarySeparation * obj.DriftCoefficient , ...
+                obj.NondecisionTime                           , ...
+                obj.InitialBias                               );
             
         end
         
         
         function logDensity = logPdf(obj, data)
-
-            s = obj.DriftCoefficient;
-            v = obj.DriftRate * s;
-            a = obj.BoundarySeparation * s;
-            h = obj.NondecisionTime;
-            b = obj.InitialBias;
             
-            logDensity = wdmLogLikelihoodMexFile(data, v, a, h, b);
+            logDensity = wdmLogLikelihoodMexFile(               ...
+                data                                          , ...
+                obj.DriftRate * obj.DriftCoefficient          , ...
+                obj.BoundarySeparation * obj.DriftCoefficient , ...
+                obj.NondecisionTime                           , ...
+                obj.InitialBias                               );
             
         end
         
         
         function logDensity = logJointPdf(obj, data)
-
-            s = obj.DriftCoefficient;
-            v = obj.DriftRate * s;
-            a = obj.BoundarySeparation * s;
-            h = obj.NondecisionTime;
-            b = obj.InitialBias;
             
-            logDensity = wdmLogJointDensityMexFile(data, v, a, h, b);
+            logDensity = wdmLogJointDensityMexFile(             ...
+                data                                          , ...
+                obj.DriftRate * obj.DriftCoefficient          , ...
+                obj.BoundarySeparation * obj.DriftCoefficient , ...
+                obj.NondecisionTime                           , ...
+                obj.InitialBias                               );
             
         end
         
         
         function [data, reactionTime, accuracy] = rnd(obj, sampleSize)
             
-            s = obj.DriftCoefficient;
-            v = obj.DriftRate * s;
-            a = obj.BoundarySeparation * s;
-            h = obj.NondecisionTime;
-            b = obj.InitialBias;
-                        
-            seed = 1e6 * rand;
-
-            data = wdmRandomMexFile(v, a, h, b, sampleSize, seed);
+            data = wdmRandomMexFile(               ...
+                obj.DriftRate * obj.DriftCoefficient          , ...
+                obj.BoundarySeparation * obj.DriftCoefficient , ...
+                obj.NondecisionTime                           , ...
+                obj.InitialBias                               , ...
+                sampleSize                                    , ...
+                1e6 * rand                                    );
             
             reactionTime = abs(data);
             accuracy = data > 0;
@@ -178,12 +175,9 @@ classdef Wiener
 
     end 
     
-    
 
     % Static methods don't need the object as input
     methods (Static, Access=private)
-
-
     end
         
 end
