@@ -1,27 +1,53 @@
-# wdmmex
-MATLAB files for the Wiener diffusion model distribution
+# WDM-MEX
+
+Fast MATLAB files for the Wiener diffusion model distribution
 
 These functions require a compiler correctly set up for your 
 MATLAB install.  The GNU GSL library can optionally be linked
 during compilation.
 
-Main functions:
+----------------
 
- *  WDMRND   Random samples from a Wiener diffusion model
- *  WDMPDF   Wiener diffusion model probability density function
- *  WDMLIKE  Negative log-likelihood Wiener diffusion model
+## @WIENER CLASS
 
-Helper functions:
+### Methods for class Wiener
 
- *  WDM_VALIDATE  Validates input for WDM functions
- *  WDM_DIALOG    Start dialog to compile WDM MEX files
- *  TEST_MEX      Test all files
+ * WIENER       --- Construct a new object
+ * DISP         --- Print the object to console
+ * RND          --- Generate random data from the distribution
+ * PDF          --- Returns the pdf
+ * LOGPDF       --- Returns the log of the pdf
+ * LOGJOINTPDF  --- Returns the log of the joint pdf of multiple points
 
-C functions:
+### Static methods
 
- *  wdmrndx.c     Compiled and called by WDMRND.M
- *  wdmpdfx.c     Compiled and called by WDMPDF.M
- *  wdmlikex.c    Compiled and called by WDMLIKE.M
+ * DEVIANCE     --- Returns the deviance score
+ * ESTIMATE     --- Produces a Wiener object fit to data
+ * TESTSUITE    --- Tests the public methods ofthe class
+
+---------------
+
+## +WDM PACKAGE
+
+### Main functions
+
+ *  WDM.WDMRND   --- Random samples from a Wiener diffusion model
+ *  WDM.WDMPDF   --- Wiener diffusion model probability density function
+ *  WDM.WDMLIKE  --- Negative log-likelihood Wiener diffusion model
+
+### Helper functions
+
+ *  WDM.WDM_VALIDATE  --- Validates input for WDM functions
+ *  WDM.WDM_DIALOG    --- Start dialog to compile WDM MEX files
+ *  WDM.TEST_MEX      --- Test all files
+
+### C functions
+
+ *  +wdm/wdmrndx.c     --- Compiled and called by WDMRND
+ *  +wdm/wdmpdfx.c     --- Compiled and called by WDMPDF
+ *  +wdm/wdmlikex.c    --- Compiled and called by WDMLIKE
+
+---------------
 
 
  Copyright (C) 2004- Joachim Vandekerckhove
